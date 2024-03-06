@@ -1,7 +1,11 @@
 import React from 'react';
 
 const HomePage: React.FC = () => {
-  return <h1>Hello 👋</h1>;
+  return (
+    <div data-testid='home-page'>
+      <h1>Hello 👋</h1>
+    </div>
+  );
 };
 
 export default HomePage;
