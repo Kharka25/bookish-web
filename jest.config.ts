@@ -1,11 +1,23 @@
-// import type {Config} from 'jest';
-import type { Config as Config_2 } from '@jest/types';
+import type { JestConfigWithTsJest } from 'ts-jest';
+import { pathsToModuleNameMapper } from 'ts-jest';
+import { defaults as tsjPreset } from 'ts-jest/presets';
 
-const config: Config_2.InitialOptions = {
-  setupFilesAfterEnv: [
-    '<rootDir>/src/config/setupTests.ts',
-    '@testing-library/jest-dom/extend-expect',
-  ],
+import { compilerOptions } from './tsconfig.json';
+
+const config: JestConfigWithTsJest = {
+  ...tsjPreset,
+  moduleDirectories: ['node_modules', 'src'],
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
+    prefix: `<rootDir>${compilerOptions.baseUrl}`,
+  }),
+  preset: 'ts-jest',
+  setupFilesAfterEnv: ['<rootDir>/src/config/setupTest.ts'],
+  testEnvironment: 'jsdom',
+  testRegex: '.spec.t(sx)?$',
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest',
+  },
+  verbose: true,
 };
 
 export default config;
