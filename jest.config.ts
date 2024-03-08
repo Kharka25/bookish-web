@@ -16,6 +16,7 @@ const config: JestConfigWithTsJest = {
   testRegex: '.spec.t(sx)?$',
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
+    '.+\\.(css|sass|scss)$': 'jest-css-modules-transform',
   },
   verbose: true,
 };
