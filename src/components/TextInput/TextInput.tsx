@@ -13,7 +13,7 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, TextInputProps> = (
   ref
 ) => {
   return (
-    <div>
+    <div className='text-input-container'>
       <label className='label' htmlFor={htmlFor}>
         {label}
       </label>

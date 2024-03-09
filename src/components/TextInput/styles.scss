@@ -1,4 +1,11 @@
-label {
-  font-size: 20px;
-  color: brown;
+.text-input-container {
+  background-color: aqua;
+
+  input {
+    background-color: burlywood;
+  }
+
+  label {
+    color: blueviolet;
+  }
 }
