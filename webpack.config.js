@@ -7,6 +7,9 @@ module.exports = {
   mode: 'development',
   entry: path.resolve(__dirname, 'src/index.tsx'),
   devServer: {
+    client: {
+      logging: 'none',
+    },
     static: {
       directory: path.resolve(__dirname, 'dist'),
     },
@@ -56,9 +59,16 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               postcssOptions: { plugins: [['postcss-preset-env', {}]] },
+              sourceMap: true,
             },
           },
-          'sass-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: false,
+              implementation: require.resolve('node-sass'),
+            }
+          }
         ],
       },
       {

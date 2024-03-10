@@ -1,11 +1,20 @@
-.text-input-container {
-  background-color: aqua;
+@import 'constants/colors.scss';
 
+.text-input-container {
   input {
-    background-color: burlywood;
+    border-color: $GRAY_50;
+    border-radius: 5px;
+    border-width: 1px;
+    outline: none;
+
+  }
+
+  .focused {
+    border-color: $PRIMARY;
   }
 
   label {
-    color: blueviolet;
+    // color: $PRIMARY;
+    font-size: 14px;
   }
 }

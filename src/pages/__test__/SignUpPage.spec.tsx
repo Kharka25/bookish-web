@@ -26,15 +26,15 @@ describe('Signup Page', () => {
     expect(subHeading).toBeInTheDocument;
   })
 
-  // it('renders a textinput', () => {
-  //   renderComponent();
-    // const input = screen.getByRole('textbox', {name: /name/i})
-  //   expect(input).toBeInTheDocument
-  // })
-
-  it('display 2 textinput', () => {
+  it('renders a textinput', () => {
     renderComponent();
-    const inputs = screen.getAllByRole('textbox');
-    expect(inputs).toHaveLength(2);
-  });
+    const input = screen.getByRole('textbox', {name: /name/i})
+    expect(input).toBeInTheDocument
+  })
+
+  // it('display 2 textinput', () => {
+  //   renderComponent();
+  //   const inputs = screen.getAllByRole('textbox');
+  //   expect(inputs).toHaveLength(2);
+  // });
 })

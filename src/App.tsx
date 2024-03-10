@@ -1,15 +1,15 @@
 import React from 'react';
 
-import { HomePage } from '@pages';
-import { TextInput } from '@components';
+import { SignUpPage } from '@pages';
 
 const App: React.FC = () => {
-  return (
-    <>
-      <HomePage />
-      <TextInput label='Name' htmlFor='Name' />
-    </>
-  );
+	return (
+		<>
+			{/* <HomePage /> */}
+			{/* <TextInput label='Name' htmlFor='Name' /> */}
+			<SignUpPage />
+		</>
+	);
 };
 
 export default App;
