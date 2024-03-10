@@ -7,7 +7,7 @@ const App: React.FC = () => {
   return (
     <>
       <HomePage />
-      <TextInput label='Text' />
+      <TextInput label='Name' htmlFor='Name' />
     </>
   );
 };
