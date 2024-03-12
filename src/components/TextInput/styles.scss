@@ -1,4 +1,4 @@
-@import 'constants/colors.scss';
+@import 'globals/colors.scss';
 
 .text-input-container {
   input {
@@ -6,7 +6,6 @@
     border-radius: 5px;
     border-width: 1px;
     outline: none;
-
   }
 
   .focused {

@@ -23,7 +23,9 @@
       "@components": ["src/components"],
       "@constants/*": ["src/constants/*"],
       "@config/*": ["src/config/*"],
-      "@pages": ["src/pages"]
+      "@globals/*": ["src/globals/*"],
+      "@pages": ["src/pages"],
+      "@utils/*": ["src/utils/*"]
     }
   },
   "include": ["src/**/*", "src/**/*.json", "test/**/*"],

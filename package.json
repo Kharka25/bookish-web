@@ -34,7 +34,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "jest-scss-transform": "^1.0.3",
     "mini-css-extract-plugin": "^2.8.1",
-    "node-sass": "^7.0.3",
+    "node-sass": "npm:sass@^1.71.1",
     "postcss-loader": "^8.1.1",
     "postcss-preset-env": "^9.5.0",
     "react-scripts": "^5.0.1",

@@ -66,9 +66,9 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               sourceMap: false,
-              implementation: require.resolve('node-sass'),
-            }
-          }
+              implementation: require.resolve('sass'),
+            },
+          },
         ],
       },
       {
@@ -102,7 +102,7 @@ module.exports = {
   ],
   resolve: {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-    extensions: ['*', '.js', '.jsx', '.tsx', '.ts'],
+    extensions: ['.*', '.js', '.jsx', '.tsx', '.ts'],
     plugins: [new TsconfigPathsPlugin()],
   },
 };
