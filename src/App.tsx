@@ -1,15 +1,9 @@
 import React from 'react';
 
-import { HomePage } from '@pages';
-import { TextInput } from '@components';
+import { SignUpPage } from '@pages';
 
 const App: React.FC = () => {
-  return (
-    <>
-      <HomePage />
-      <TextInput label='Text' />
-    </>
-  );
+	return <SignUpPage />;
 };
 
 export default App;

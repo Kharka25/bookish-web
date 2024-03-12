@@ -1,4 +1,9 @@
-import React, { ForwardRefRenderFunction, InputHTMLAttributes } from 'react';
+import React, {
+  ForwardRefRenderFunction,
+  HTMLInputTypeAttribute,
+  InputHTMLAttributes,
+  useState,
+} from 'react';
 
 import './styles.scss';
 
@@ -6,18 +11,29 @@ interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   htmlFor?: string;
   ref?: string;
+  type?: HTMLInputTypeAttribute;
 }
 
 const Input: ForwardRefRenderFunction<HTMLInputElement, TextInputProps> = (
-  { label, htmlFor, ...otherProps },
+  { label, htmlFor, type, ...otherProps },
   ref
 ) => {
+  const [focused, setFocused] = useState(false);
+
   return (
-    <div>
+    <div className={`text-input-container`}>
       <label className='label' htmlFor={htmlFor}>
         {label}
       </label>
-      <input {...otherProps} id={htmlFor} type='text' ref={ref} />
+      <input
+        className={`${focused && 'focused'}`}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        {...otherProps}
+        id={htmlFor}
+        type={type}
+        ref={ref}
+      />
     </div>
   );
 };
