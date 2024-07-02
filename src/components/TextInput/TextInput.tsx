@@ -26,10 +26,10 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, TextInputProps> = (
         {label}
       </label>
       <input
+        {...otherProps}
         className={`${focused && 'focused'}`}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        {...otherProps}
         id={htmlFor}
         type={type}
         ref={ref}
