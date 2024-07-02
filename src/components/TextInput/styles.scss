@@ -1,0 +1,26 @@
+@import 'globals/colors.scss';
+
+.text-input-container {
+  margin: 10px 0 10px 0;
+  input {
+    background-color: $BACKGROUND_GRAY;
+    border-color: $GRAY_50;
+    border-radius: 9px;
+    border-width: 0;
+    height: $SPACING * 10;
+    outline: none;
+    padding-left: $SPACING;
+    width: 40%;
+  }
+
+  .focused {
+    border-color: $PRIMARY;
+    border-width: 1px;
+  }
+
+  label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: $SPACING;
+  }
+}
