@@ -6,10 +6,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const { disabled, label } = props;
+  const { disabled, label, ...otherProps } = props;
   return (
     <div className='button'>
-      <button disabled={disabled}>{label}</button>
+      <button {...otherProps} disabled={disabled}>
+        {label}
+      </button>
     </div>
   );
 };
