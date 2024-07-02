@@ -1,26 +1,74 @@
-import React from 'react';
+import React, { ChangeEventHandler, useState } from 'react';
 
-import { TextInput } from '@components';
+import { Button, TextInput } from '@components';
 
-interface Props {};
+interface SignUpDataI {
+  name: string;
+  email: string;
+  password: string;
+}
 
-const SignUpPage: React.FC<Props> = props => {
-  const {} = props;
+type InputChangeEvent = ChangeEventHandler<HTMLInputElement>;
+
+const SignUpPage: React.FC = () => {
+  const [signupData, setSignupData] = useState<SignUpDataI>({
+    name: '',
+    email: '',
+    password: '',
+  });
+
+  let disabled = true;
+
+  function buttonDisabled() {
+    disabled =
+      signupData?.email.trim() === '' ||
+      signupData?.name.trim() === '' ||
+      signupData?.password.trim() === '';
+
+    return disabled;
+  }
+
+  const signUpDataHandler: InputChangeEvent = (event) => {
+    const { id, value } = event.currentTarget;
+    setSignupData((currentValues) => {
+      return { ...currentValues, [id]: value };
+    });
+  };
 
   return (
-   <div data-testid='signup-page'>
-    <div>
-      <h1>Sign Up</h1>
-      <h6>Create an account and start your Bookish adventure!</h6>
+    <div data-testid='signup-page'>
+      <div>
+        <h1>Sign Up</h1>
+        <h6>Create an account and start your Bookish adventure!</h6>
+      </div>
+      <div>
+        <TextInput
+          onChange={signUpDataHandler}
+          htmlFor='name'
+          label='Name'
+          placeholder='Your name'
+          value={signupData.name}
+        />
+        <TextInput
+          onChange={signUpDataHandler}
+          htmlFor='email'
+          label='Email'
+          placeholder='Your email'
+          type='email'
+          required
+          value={signupData.email}
+        />
+        <TextInput
+          onChange={signUpDataHandler}
+          htmlFor='password'
+          label='Password'
+          placeholder='Your password'
+          type='password'
+          value={signupData.password}
+        />
+        <Button disabled={buttonDisabled()} label='Sign Up' />
+      </div>
     </div>
-    <div>
-      <label htmlFor='name'>Name</label>
-      <input id='name' type="text" placeholder='Your name' />
-      <label htmlFor='email'>Email</label>
-      <input id='email' type="text" placeholder='Your email' />
-    </div>
-    <TextInput htmlFor='firstName' label='Name' />
-   </div>
   );
 };
 

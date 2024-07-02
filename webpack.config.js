@@ -1,11 +1,15 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // Optimizes CSS - caching
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin'); // For map path alias from tsconfig
 
 module.exports = {
   mode: 'development',
   entry: path.resolve(__dirname, 'src/index.tsx'),
   devServer: {
+    client: {
+      logging: 'none',
+    },
     static: {
       directory: path.resolve(__dirname, 'dist'),
     },
@@ -34,17 +38,37 @@ module.exports = {
         ],
       },
       {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        use: ['style-loader', 'css-loader'],
+        test: /\.(css)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: { plugins: [['postcss-preset-env', {}]] },
+            },
+          },
+        ],
       },
       {
         test: /\.s[ac]ss$/i,
-        exclude: /node_modules/,
         use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader', options: { modules: true } },
-          { loader: 'sass-loader' },
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: { plugins: [['postcss-preset-env', {}]] },
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: false,
+              implementation: require.resolve('sass'),
+            },
+          },
         ],
       },
       {
@@ -74,14 +98,11 @@ module.exports = {
       template: './src/index.html',
       filename: 'index.html',
     }), // Generates HTML files for bundled project
+    new MiniCssExtractPlugin(), // Extracts CSS styles into a seperate file
   ],
   resolve: {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-    extensions: ['*', '.js', '.jsx', '.tsx', '.ts'],
+    extensions: ['.*', '.js', '.jsx', '.tsx', '.ts'],
     plugins: [new TsconfigPathsPlugin()],
-    // alias: {
-    //   '@components': path.resolve(__dirname, 'src/components'),
-    //   '@pages': path.resolve(__dirname, 'src/pages'),
-    // },
   },
 };
