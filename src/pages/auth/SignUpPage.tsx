@@ -1,9 +1,11 @@
 import React, { ChangeEventHandler, useState } from 'react';
 
 import { Button, TextInput } from '@components';
+import './styles.scss';
 
 interface SignUpDataI {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
 }
@@ -12,7 +14,8 @@ type InputChangeEvent = ChangeEventHandler<HTMLInputElement>;
 
 const SignUpPage: React.FC = () => {
   const [signupData, setSignupData] = useState<SignUpDataI>({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
   });
@@ -22,7 +25,8 @@ const SignUpPage: React.FC = () => {
   function buttonDisabled() {
     disabled =
       signupData?.email.trim() === '' ||
-      signupData?.name.trim() === '' ||
+      signupData?.firstName.trim() === '' ||
+      signupData?.lastName.trim() === '' ||
       signupData?.password.trim() === '';
 
     return disabled;
@@ -35,25 +39,36 @@ const SignUpPage: React.FC = () => {
     });
   };
 
+  function handleSignUp(data: SignUpDataI) {
+    console.log(signupData);
+  }
+
   return (
-    <div data-testid='signup-page'>
-      <div>
-        <h1>Sign Up</h1>
+    <div data-testid='signup-page' className='container'>
+      <div className='heading-container'>
+        <h1 className='heading-primary'>Sign Up</h1>
         <h6>Create an account and start your Bookish adventure!</h6>
       </div>
-      <div>
+      <div className='grid grid--2-cols fields-container'>
         <TextInput
           onChange={signUpDataHandler}
-          htmlFor='name'
-          label='Name'
-          placeholder='Your name'
-          value={signupData.name}
+          htmlFor='firstName'
+          label='First name'
+          placeholder='John'
+          value={signupData.firstName}
+        />
+        <TextInput
+          onChange={signUpDataHandler}
+          htmlFor='lastName'
+          label='Last name'
+          placeholder='Doe'
+          value={signupData.lastName}
         />
         <TextInput
           onChange={signUpDataHandler}
           htmlFor='email'
           label='Email'
-          placeholder='Your email'
+          placeholder='johndoe@mail.com'
           type='email'
           required
           value={signupData.email}
@@ -62,12 +77,17 @@ const SignUpPage: React.FC = () => {
           onChange={signUpDataHandler}
           htmlFor='password'
           label='Password'
-          placeholder='Your password'
+          placeholder='*******'
           type='password'
           value={signupData.password}
         />
-        <Button disabled={buttonDisabled()} label='Sign Up' />
       </div>
+      <Button
+        className='btn sign-up-btn'
+        onClick={() => handleSignUp(signupData)}
+        disabled={buttonDisabled()}
+        label='Sign Up'
+      />
     </div>
   );
 };

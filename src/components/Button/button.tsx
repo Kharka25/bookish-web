@@ -1,5 +1,6 @@
 import React, { ButtonHTMLAttributes } from 'react';
 
+import './styles.scss';
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
   label: string;

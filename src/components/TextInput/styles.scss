@@ -9,8 +9,8 @@
     border-width: 0;
     height: $SPACING * 10;
     outline: none;
-    padding-left: $SPACING;
-    width: 40%;
+    padding-left: $SPACING * 3;
+    width: 100%;
   }
 
   .focused {
@@ -20,7 +20,7 @@
 
   label {
     display: block;
-    font-size: 14px;
+    font-size: 12px;
     margin-bottom: $SPACING;
   }
 }

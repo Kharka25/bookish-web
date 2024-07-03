@@ -1,0 +1,16 @@
+@import 'globals/colors.scss';
+
+.sign-up-btn {
+  align-self: center;
+  margin: 4rem 0;
+  width: 50%;
+}
+
+.heading-container {
+  padding: 2rem 12rem;
+}
+
+.fields-container {
+  column-gap: $SPACING * 8;
+  padding: 0 12rem;
+}
