@@ -15,7 +15,7 @@ describe('Signup Page', () => {
       expect(screen.getByTestId('signup-page')).toBeInTheDocument;
     });
 
-    it('display Sign In heading text', () => {
+    it('display Sign Up heading text', () => {
       renderComponent();
       const heading = screen.getByRole('heading', { name: 'Sign Up' });
       expect(heading).toBeInTheDocument;
@@ -29,9 +29,15 @@ describe('Signup Page', () => {
       expect(subHeading).toBeInTheDocument;
     });
 
-    it('renders name textinput', () => {
+    it('renders first name textinput', () => {
       renderComponent();
-      const input = screen.getByRole('textbox', { name: /name/i });
+      const input = screen.getByRole('textbox', { name: /First name/i });
+      expect(input).toBeInTheDocument;
+    });
+
+    it('renders last name textinput', () => {
+      renderComponent();
+      const input = screen.getByRole('textbox', { name: /Last name/i });
       expect(input).toBeInTheDocument;
     });
 
@@ -41,10 +47,16 @@ describe('Signup Page', () => {
       expect(input).toBeInTheDocument;
     });
 
-    it('renders password input', () => {
+    it('renders email input as email type', () => {
       renderComponent();
       const input = screen.getByLabelText('Email');
       expect(input).toHaveAttribute('type', 'email');
+    });
+
+    it('renders password textinput', () => {
+      renderComponent();
+      const input = screen.getByLabelText('Password');
+      expect(input).toBeInTheDocument;
     });
 
     it('renders password input as password type', () => {
@@ -75,10 +87,12 @@ describe('Signup Page', () => {
   describe('Form Interaction', () => {
     it('enables button when password criteria is met', async () => {
       renderComponent();
-      const nameInput = screen.getByLabelText('Name');
+      const firstNameInput = screen.getByLabelText('First name');
+      const lastNameInput = screen.getByLabelText('Last name');
       const emailInput = screen.getByLabelText('Email');
       const passwordInput = screen.getByLabelText('Password');
-      await userEvent.type(nameInput, 'John Doe');
+      await userEvent.type(firstNameInput, 'John');
+      await userEvent.type(lastNameInput, 'Doe');
       await userEvent.type(emailInput, 'jon@mail.com');
       await userEvent.type(passwordInput, '12345As@');
       const button = screen.queryByRole('button', { name: 'Sign Up' });

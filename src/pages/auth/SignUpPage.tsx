@@ -46,7 +46,7 @@ const SignUpPage: React.FC = () => {
   return (
     <div data-testid='signup-page' className='container'>
       <div className='heading-container'>
-        <h1 className='heading-primary'>Sign Up</h1>
+        <h1>Sign Up</h1>
         <h6>Create an account and start your Bookish adventure!</h6>
       </div>
       <div className='grid grid--2-cols fields-container'>
